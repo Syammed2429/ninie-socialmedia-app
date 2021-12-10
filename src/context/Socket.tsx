@@ -4,10 +4,6 @@ import { io } from 'socket.io-client'
 
 // TODO: Add error handling for sockets
 
-// const socket = io('https://server-gi.herokuapp.com/', {
-//   withCredentials: true,
-//   transports: ['websocket']
-// })
 
 
 // const socket = io('https://niniesocial.herokuapp.com//', {
