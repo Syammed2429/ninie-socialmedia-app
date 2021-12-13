@@ -24,7 +24,7 @@ const App = () => {
     <NotificationsProvider>
       <ChatsProvider>
         <PostsProvider>
-          <h1 className="outliner">Ninie</h1>
+          <h1 className="outliner">N.I.N.I</h1>
           <Base />
         </PostsProvider>
       </ChatsProvider>
