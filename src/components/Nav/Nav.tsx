@@ -15,7 +15,7 @@ const Nav = () => {
 
   return (
     <header>
-      <Link to="/" className="logo">Ninie</Link>
+      <Link to="/" className="logo">N.I.N.I</Link>
 
       <nav>
         <h2 className="outliner">Navigation</h2>
