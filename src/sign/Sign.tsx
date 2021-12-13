@@ -22,7 +22,7 @@ const Sign = () => {
 
   return (
     <div className="sign" style={{ height }}>
-      <h1>Ninie.</h1>
+      <h1>N.I.N.I.</h1>
 
       {isSafari && (
         <div className="safari">
@@ -46,4 +46,3 @@ const Sign = () => {
 export default Sign
 
 
-// https://server-gi.herokuapp.com

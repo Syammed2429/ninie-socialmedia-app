@@ -1,6 +1,6 @@
 import { Routes, Route } from 'react-router-dom'
-import { useContext, useEffect, useState } from 'react'
-import { Helmet, HelmetProvider } from 'react-helmet-async'
+import { useContext, useEffect, useState } from 'react'
+import { Helmet, HelmetProvider } from 'react-helmet-async'
 import SocketContext from '../../context/Socket'
 import UserContext from '../../context/User'
 import useGetMe from '../../hooks/query/useGetMe'
@@ -15,11 +15,11 @@ import ChatsContext from '../../context/Chats'
 
 const Base = () => {
   const socket = useContext(SocketContext)
-  const { user } = useContext(UserContext)
-  const { setOnline } = useContext(UserContext)
-  const { notifications } = useContext(NotificationsContext)
-  const { chats } = useContext(ChatsContext) 
-  const [ titleNumber, setTitleNumber ] = useState(0)
+  const { user } = useContext(UserContext)
+  const { setOnline } = useContext(UserContext)
+  const { notifications } = useContext(NotificationsContext)
+  const { chats } = useContext(ChatsContext)
+  const [titleNumber, setTitleNumber] = useState(0)
 
   useGetMe()
 
@@ -36,9 +36,9 @@ const Base = () => {
     socket.connect()
 
     socket.emit('online', {}, (online: string[]) => setOnline(online))
-    socket.on('online/created', ({ userId }) => setOnline(prev => [userId, ...prev]))
+    socket.on('online/created', ({ userId }) => setOnline(prev => [userId, ...prev]))
 
-    socket.on('online/removed', ({ userId }) => {
+    socket.on('online/removed', ({ userId }) => {
       setOnline(prev => {
         const mutable = [...prev]
         const index = mutable.indexOf(userId)
@@ -57,24 +57,24 @@ const Base = () => {
       socket.disconnect()
     }
   }, [socket])
-  
+
   return (
     <HelmetProvider>
-    <div className="base">
-      <Helmet>
-        <title>Ninie{titleNumber > 0 ? `(${titleNumber})` : ''}</title>
-      </Helmet>
+      <div className="base">
+        <Helmet>
+          <title>N.I.N.I{titleNumber > 0 ? `(${titleNumber})` : ''}</title>
+        </Helmet>
 
-      <Nav />
-      
-      <Routes>
-        <Route path="/" element={ <Dashboard/> } />
-        <Route path="/u/:username" element={ <Profile /> }/>
-        <Route path="/p/:id" element={ <Post /> } />
-      </Routes>
+        <Nav />
 
-      <Chats />
-    </div>
+        <Routes>
+          <Route path="/" element={<Dashboard />} />
+          <Route path="/u/:username" element={<Profile />} />
+          <Route path="/p/:id" element={<Post />} />
+        </Routes>
+
+        <Chats />
+      </div>
     </HelmetProvider>
   )
 }

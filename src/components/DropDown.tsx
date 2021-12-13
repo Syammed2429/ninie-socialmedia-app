@@ -1,7 +1,8 @@
-import { useState } from 'react'
-const DropDown = ({ options }: { options: string[] }) => {
-  const [ isActive, setIsActive ] = useState(false)
-  const [ selected, setSelected ] = useState('')
+import { useState } from 'react'
+
+const DropDown = ({ options }: { options: string[] }) => {
+  const [isActive, setIsActive] = useState(false)
+  const [selected, setSelected] = useState('')
 
   return (
     <div className="select">
@@ -9,8 +10,8 @@ const DropDown = ({ options }: { options: string[] }) => {
       {isActive && (
         <div className="options">
           {options.map(option => (
-            <div 
-              className="option" 
+            <div
+              className="option"
               onClick={e => {
                 setSelected(option)
                 setIsActive(false)

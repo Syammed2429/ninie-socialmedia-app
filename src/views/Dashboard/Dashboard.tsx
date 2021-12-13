@@ -1,4 +1,4 @@
-import { useContext } from 'react'
+import { useContext } from 'react'
 import type PostType from '../../types/Post'
 import InfiniteScroll from '../../components/InfiniteScroll'
 import PostsContext from '../../context/Posts'
@@ -21,7 +21,7 @@ const Dashboard = () => {
 
       {error && (
         <>
-          <Error message="An error occurred, please try again later."/>
+          <Error message="An error occurred, please try again later." />
           <PostSkeleton />
           <PostSkeleton />
           <PostSkeleton />
@@ -36,17 +36,17 @@ const Dashboard = () => {
         </>
       )}
 
-      <InfiniteScroll 
-        className="posts" 
-        byWindow={true} 
-        hasNextPage={hasNextPage} 
-        isLoading={isLoading} 
+      <InfiniteScroll
+        className="posts"
+        byWindow={true}
+        hasNextPage={hasNextPage}
+        isLoading={isLoading}
         fetchNextPage={fetchNextPage} >
 
         {posts && posts.filter((post: PostType) => post && post._id).map((post: PostType) => (
-          <Post key={post._id} post={post} />
+          <Post key={post._id} post={post} />
         ))}
-        
+
       </InfiniteScroll>
     </main>
   )

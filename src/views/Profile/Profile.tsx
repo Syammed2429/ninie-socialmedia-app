@@ -1,5 +1,5 @@
-import { useState, useEffect, useContext } from 'react'
-import { useParams } from 'react-router-dom'
+import { useState, useEffect, useContext } from 'react'
+import { useParams } from 'react-router-dom'
 import type UserType from '../../types/User'
 import PostsContext from '../../context/Posts'
 import UserContext from '../../context/User'
@@ -13,12 +13,12 @@ import PostSkeleton from '../../skeletons/Post'
 
 const Profile = () => {
   const { username } = useParams() as { username: string }
-  const { user } = useContext(UserContext)
-  const [ profile, setProfile ] = useState<UserType | null>(null)
-  
-  const { posts } = useContext(PostsContext)
+  const { user } = useContext(UserContext)
+  const [profile, setProfile] = useState<UserType | null>(null)
+
+  const { posts } = useContext(PostsContext)
   const { mutate, error } = useGetProfile(setProfile)
-  const { isLoading, fetchNextPage, hasNextPage } = useGetPostsByUser(username)
+  const { isLoading, fetchNextPage, hasNextPage } = useGetPostsByUser(username)
 
   useEffect(() => mutate(username), [username, user, mutate])
 
@@ -33,15 +33,15 @@ const Profile = () => {
 
         {error && (
           <>
-            <Error message={(error as any)?.response?.data?.error && (error as any)?.response?.data?.error === 'No user by that name' ? 'No user by that name, sorry!' : 'An error occurred, please try again later.'}/>
-            <PostSkeleton/>
-            <PostSkeleton/>
-            <PostSkeleton/>
+            <Error message={(error as any)?.response?.data?.error && (error as any)?.response?.data?.error === 'No user by that name' ? 'No user by that name, sorry!' : 'An error occurred, please try again later.'} />
+            <PostSkeleton />
+            <PostSkeleton />
+            <PostSkeleton />
           </>
         )}
 
-        {!user || !profile ? (
-          <PostSkeleton/>
+        {!user || !profile ? (
+          <PostSkeleton />
         ) : (
           <User profile={profile} />
         )}
@@ -50,18 +50,18 @@ const Profile = () => {
           <div className="post">
             <b>@{profile.username}</b> has no posts yet</div>
         )}
-        
+
         {posts && posts
           .filter(({ creator }) => creator.username === username)
           .map((post) => (
             <Post key={post._id} post={post} />
           )
-        )}
+          )}
 
         {isLoading && (
           <>
-            <PostSkeleton/>
-            <PostSkeleton/>
+            <PostSkeleton />
+            <PostSkeleton />
           </>
         )}
 
